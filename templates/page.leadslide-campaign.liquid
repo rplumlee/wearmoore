@@ -1,0 +1,99 @@
+{% layout none %}
+{% assign ls_api_key = 'LS-LS-NoDse7--LS-boNmDtXR-' %}
+{% assign ls_type = 'shopify' %}
+{% assign ls_page_id = page.id %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <!-- Basic page needs ================================================== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    {% if settings.favicon_enable %}
+    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png"/>
+    {% endif %}
+
+    <!-- Title and description ================================================== -->
+    <title>
+        {{ page_title }}{% if current_tags %} – tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page !=
+        1 %} – Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} – {{ shop.name }}{%
+        endunless %} </title>
+
+    {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    <!-- Helpers ================================================== -->
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- GOOGLE FONTS REMOVE IF NOT USED -->
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Alegreya:400,700|Alegreya+Sans:400,300|Arvo|Chivo|Domine|Droid+Sans|Josefin+Slab|Lato|Merriweather|Montserrat|Old+Standard+TT|Open+Sans:300|Playfair+Display|Poppins|PT+Sans|PT+Serif|Roboto:400,700|Roboto+Slab|Ubuntu|Vollkorn'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Default Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Styles -->
+    <link rel="stylesheet" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css.map">
+    <link rel="stylesheet" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" media="all"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css.map">
+
+    <!-- Leadslide Styles -->
+    <link href="https://leadslide.com/ps/styles.css" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="https://leadslide.com/ps/pages-default.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+
+<body id="leadslidePage " class="leadslide-pages">
+
+<div id="ls404" style="display:none;">
+    <h2>404 Error</h2>
+
+    <p>Page Not Found.</p>
+</div>
+
+
+<!-- Leadslide Api Script -->
+<script src="https://leadslide.com/api/rest/get/campaign/{{ls_page_id}}/{{ls_api_key}}"></script>
+<script src="https://leadslide.com/ps/shopify.js"></script>
+
+
+<script type="text/javascript">
+    var apiKey = "{{ls_api_key}}";
+    var pKey = "{{ls_page_id}}";
+    var lsBaseUrl = 'https://leadslide.com/analytics/set/shopify/' + apiKey + '/' + pKey;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        var xmlhttp = new XMLHttpRequest();
+    }
+    else {// code for IE6, IE5
+        var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            return xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", lsBaseUrl, false);
+    xmlhttp.send();
+</script>
+
+</body>
+
+</html>
+

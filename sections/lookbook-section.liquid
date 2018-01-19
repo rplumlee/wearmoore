@@ -1,0 +1,159 @@
+  <style>
+
+  </style>
+
+  {% assign j = 1 %}
+  <div class="full-page">
+
+  {% for block in section.blocks %}
+    {% if block.settings.videolink != blank %}
+      <div class="section ">
+        <div id="layer"></div>
+        <div class="video-foreground">
+          <iframe id="myVideo" src="{{block.settings.videolink}}" frameborder="0" data-autoplay loop muted></iframe>
+          <img src="" class="mobile-video">
+        </div>
+      </div>
+
+    {% elsif block.settings.slide2 != blank %}
+
+      <div class="section">
+        <div class="slide" data-anchor="slide1" style="background: url('{{ block.settings.image | img_url: '2048x' }}')">  </div>
+
+        {% if block.settings.slide2 != blank %}
+          <div class="slide" data-anchor="slide2" style="background: url('{{ block.settings.slide2 | img_url: '2048x' }}')">  </div>
+        {% endif %}
+
+        {% if block.settings.slide3 != blank %}
+        <div class="slide" data-anchor="slide3" style="background: url('{{ block.settings.slide3 | img_url: '2048x' }}')">  </div>
+        {% endif %}
+
+        {% if block.settings.slide4 != blank %}
+        <div class="slide" data-anchor="slide4" style="background: url('{{ block.settings.slide4 | img_url: '2048x' }}')">  </div>
+        {% endif %}
+
+      </div>
+
+    {% else %}
+
+    <div class="section" {{ block.shopify_attributes }} style="background-position:top left;background-size:cover;background-image: url('{{ block.settings.image | img_url: '2048x' }}');"">
+
+
+     <h4>{{block.settings.cta_label}}</h4>
+    </div>
+  
+  
+
+    {% assign j = j | plus: 1 %}
+
+    {% endif %}
+   
+  {% endfor %}
+</div>
+
+{% if section.blocks.size == 0 %}
+  {% include 'no-blocks' %}
+{% endif %}
+
+
+
+
+  
+
+
+{% schema %}
+  {
+    "name": "Lookbook",
+    "class": "lookbook main",
+    "settings": [
+      {
+        "type": "select",
+        "id": "section_height",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "x-small"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          }, 
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "x-large"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link (Optional)"
+          },
+          {
+            "type": "text",
+            "id": "videolink",
+            "label": "Video Link (For Video Background)"
+          },
+          {
+            "type": "text",
+            "id": "cta_label",
+            "label": "Caption (Optional)"
+          },
+          {
+            "type": "image_picker",
+            "id": "slide2",
+            "label": "Slide 2 (Optional)"
+          },
+          {
+            "type": "image_picker",
+            "id": "slide3",
+            "label": "Slide 3 (Optional)"
+          },
+          {
+            "type": "image_picker",
+            "id": "slide4",
+            "label": "Slide 4 (Optional)"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FullPageScroll",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "image"
+          },
+          {
+            "type": "image"
+          },
+          {
+            "type": "image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

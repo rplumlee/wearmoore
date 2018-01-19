@@ -1,0 +1,22 @@
+{% assign ls_api_key = 'LS-LS-NoDse7--LS-boNmDtXR-' %}
+{% assign ls_type = 'shopify' %}
+{% assign ls_page_id = page.id %}
+<!-- Connect to leadslide -->
+
+    <!-- Default Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" ></script>
+    <!-- Bootstrap Styles -->
+     <!-- Leadslide Styles -->
+     <link rel="stylesheet" media="all" href="https://leadslide.com/ps/pages-default.css" >
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <div id="ls404" style="display:none;">
+          <h2>404 Error</h2>
+          <p>Page Not Found.</p>
+        </div>
+
+    <!-- Leadslide Api Script -->
+    <script src="https://leadslide.com/api/rest/get/page/script/{{ls_page_id}}/{{ls_api_key}}" ></script>
+
+    <!-- Leadslide Popup Scripts -->
+    <script src="https://leadslide.com/api/rest/global/popup/script/{{ls_api_key}}?shop=leadslide.myshopify.com" ></script>
